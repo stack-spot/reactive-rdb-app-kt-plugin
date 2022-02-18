@@ -1,5 +1,5 @@
 name: "reactive-rdb-app-kt-plugin"
-description: Configures database connection to a relational database through supported reactive drivers (MariaDB, MySQL, Oracle, PostgreSQL, SQL Server) and optionally migration during application startup on a reactive project
+description: Configures database connection to a relational database through supported reactive drivers (MariaDB, MySQL, PostgreSQL) and optionally migration during application startup on a reactive project
 types:
   - app
 tags:
@@ -9,19 +9,14 @@ tags:
   - "flyway"
   - "liquibase"
 inputs:
-  - label: "Data source name: "
+  - label: "Which database would you like to use?"
     type: text
-    name: "datasource_name"
-
-  - label: "Database url: "
-    type: text
-    name: "datasource_url"
-    default: "r2dbc:postgresql://localhost:5432/db"
-
-  - label: "Username: "
-    type: text
-    name: "datasource_username"
-    default: "root"
+    name: "dbms"
+    default: "PostgreSQL"
+    items:
+      - "MariaDB"
+      - "MySQL"
+      - "PostgreSQL"
 
   - label: "Which migration tool would you like to use with this datasource?"
     type: "text"
@@ -31,9 +26,3 @@ inputs:
       - "Flyway"
       - "Liquibase"
       - "None"
-
-computedInputs:
-  datasource_class: "{{inputs.datasource_name|to_camel}}"
-  repository_path: "{{inputs.datasource_name|lower}}.repository"
-  dbms: "{{inputs.datasource_url.split(':')[1]}}"
-  url_splited: "{{inputs.datasource_url[inputs.datasource_url.index(':'):]}}"

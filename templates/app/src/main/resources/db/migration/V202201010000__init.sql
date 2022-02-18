@@ -4,7 +4,7 @@
 
 -- changeset {{project_name}}:202101010000
 {% endif %}
-CREATE TABLE {{project_name|upper}}(ID INT PRIMARY KEY, NAME VARCHAR);
+CREATE TABLE {{project_name|upper}}(ID INT PRIMARY KEY, NAME VARCHAR(200));
 {% if inputs.migration_tool == "Liquibase" %}
 -- rollback DROP TABLE {{project_name|upper}};
 {% endif %}
