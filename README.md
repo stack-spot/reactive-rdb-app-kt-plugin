@@ -7,3 +7,4 @@ Supported Database Management Systems:
 - MariaDB
 
 The latest version of reactive driver was not used for the MySQL DBMS (0.9.0, at the time this was written) because it uses the most recent version of R2DBC Specification (0.9.0) and Spring Data still uses the old one, based on 0.8.X specification.
+
